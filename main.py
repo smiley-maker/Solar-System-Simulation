@@ -12,7 +12,7 @@ class Planet:
     AU = 149.6e6 * 1000
     G = 6.67428e-11
     SCALE = 200 / AU #1 AU = 100 pixels
-    TIMESTEP = 3600 * 24 # 1 day
+    TIMESTEP = 60*60*24 # 1 day
 
     def __init__(self, x, y, radius, color, mass):
         self.x = x
@@ -76,13 +76,22 @@ class Planet:
         self.x += self.x_vel * self.TIMESTEP
         self.y += self.y_vel * self.TIMESTEP
         self.orbit.append((self.x, self.y))
+    
+    def drawDistance(self, planets, win):
+        for planet in planets:
+            if self == planet:
+                continue
+            
+            d = math.sqrt((self.x - planet.x)**2 + (self.y-planet.y)**2)
+            pygame.draw.line(win, self.color, (self.x, self.y), (planet.x, planet.y), 2)
 
 
 def main():
     run = True
     clock = pygame.time.Clock()
 
-    sun = Planet(0, 0, 30, (255, 224, 46), 1.98892*10**30)
+    sun = Planet(0.003*Planet.AU, 0, 30, (255, 224, 46), 1.98892*10**30)
+    #sun.y_vel = -.0023 * 1000
     sun.sun = True
 
     earth = Planet(-1*Planet.AU, 0, 16, (140, 226, 255), 5.9742*10**24)
@@ -105,6 +114,7 @@ def main():
                 run = False
 
         for planet in planets:
+#            planet.drawDistance(planets, WIN)
             planet.updatePosition(planets)
             planet.draw(WIN)
         
