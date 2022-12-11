@@ -1,9 +1,11 @@
+#Imports
 import pygame
 import math
 
+#Initializes pygame
 pygame.init()
 
-WIDTH, HEIGHT = 800, 800
+WIDTH, HEIGHT = 600, 600 #Width & Height of the pygame screen
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Planet Simulator")
 
@@ -11,7 +13,7 @@ pygame.display.set_caption("Planet Simulator")
 class Planet:
     AU = 149.6e6 * 1000
     G = 6.67428e-11
-    SCALE = 200 / AU #1 AU = 100 pixels
+    SCALE = 150 / AU #1 AU = 100 pixels
     TIMESTEP = 60*60*24 # 1 day
 
     def __init__(self, x, y, radius, color, mass):
