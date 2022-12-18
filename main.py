@@ -92,8 +92,8 @@ def main():
     run = True
     clock = pygame.time.Clock()
 
-    sun = Planet(0.003*Planet.AU, 0, 30, (255, 224, 46), 1.98892*10**30)
-    #sun.y_vel = -.0023 * 1000
+    sun = Planet(0, 0, 30, (255, 224, 46), 1.98892*10**30)
+#   sun.y_vel = -2.3 * 1000
     sun.sun = True
 
     earth = Planet(-1*Planet.AU, 0, 16, (140, 226, 255), 5.9742*10**24)
